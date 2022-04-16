@@ -1,13 +1,12 @@
 package com.uade.ad.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Getter
