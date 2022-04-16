@@ -20,9 +20,12 @@ Access to swagger with endpoints:
 
 Deploying the application to Heroku
 
+You need to have a created and account on Heroku and have git installed
+
 | Command                             | Description                                                                       |
 |-------------------------------------|-----------------------------------------------------------------------------------|
 | `heroku login`                      | Log in to Heroku using your credentials                                           |
-| `heroku git:remote -a ad-backend`   | OPTIONAL: adds Heroku remote to your local git remotes                            |
 | `git push heroku master`            | Pushes the master branch to Heroku                                                |
+| `heroku git:clone -a ad-backend`    | OPTIONAL: Use Git to clone ad-backend's source code to your local machine         |
+| `heroku git:remote -a ad-backend`   | OPTIONAL: adds Heroku remote to your local git remotes                            |
 | `git push heroku testbranch:master` | OPTIONAL: Push a non-master branch (testbranch) to heroku to remote's main branch |
