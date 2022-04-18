@@ -16,6 +16,7 @@ public class User {
     @GeneratedValue
     private int idUser;
 
+    @Column(unique = true)
     private String email;
 
     private String nickname;
