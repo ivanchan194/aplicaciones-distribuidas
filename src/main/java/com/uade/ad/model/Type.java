@@ -2,17 +2,24 @@ package com.uade.ad.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.OneToMany;
+
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder(setterPrefix = "set")
 public class Type {
     @Id
     private int idType;
 
-    public Type() {}
+    private String description;
+
+    @OneToMany
+    private List<Recipe> recipes;
 }

@@ -1,18 +1,32 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import javax.persistence.*;
+
+import com.uade.ad.utils.YesNoBooleanConverter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder(setterPrefix = "set")
 public class User {
     @Id
+    @GeneratedValue
     private int idUser;
 
-    public User() {}
+    private String email;
+
+    private String nickname;
+
+    private String name;
+
+    private String avatarUrl;
+
+    @Convert(converter = YesNoBooleanConverter.class)
+    private boolean enabled;
+
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 }
