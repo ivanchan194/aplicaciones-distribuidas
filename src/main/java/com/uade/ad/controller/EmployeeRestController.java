@@ -1,6 +1,9 @@
 package com.uade.ad.controller;
 
 import java.util.List;
+
+import com.uade.ad.model.Type;
+import com.uade.ad.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,7 +33,10 @@ public class EmployeeRestController {
 
     @GetMapping("/api/employees/{employeeId}")
     public Employee getEmployee(@PathVariable(name="employeeId")Long employeeId) {
-        return employeeService.getEmployee(employeeId);
+        // return employeeService.getEmployee(employeeId);
+        Type type = Type.builder().setDescription("Hellos").build();
+        Type type2 = Type.builder().setDescription("Hellos").build();
+        return new Employee();
     }
 
     @PostMapping("/api/employees")
