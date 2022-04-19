@@ -1,8 +1,6 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -19,4 +17,10 @@ public class Rating {
     private int rating;
 
     private String comments;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Recipe recipe;
 }

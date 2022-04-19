@@ -1,8 +1,6 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,4 +15,10 @@ public class Conversions {
     private int idConversion;
 
     private float conversionFactor;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Unit originUnit;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Unit destinationUnit;
 }

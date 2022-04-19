@@ -1,8 +1,7 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.Set;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,4 +16,7 @@ public class Ingredient {
     private int idIngredient;
 
     private String name;
+
+    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+    private Set<RecipeIngredient> recipeIngredientSet;
 }

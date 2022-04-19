@@ -1,8 +1,7 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.Set;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,4 +16,10 @@ public class Unit {
     private int idUnit;
 
     private String description;
+
+    @OneToMany(mappedBy = "originUnit", cascade = CascadeType.ALL)
+    private Set<Conversions> originConversions;
+
+    @OneToMany(mappedBy = "destinationUnit", cascade = CascadeType.ALL)
+    private Set<Conversions> destinationConversions;
 }

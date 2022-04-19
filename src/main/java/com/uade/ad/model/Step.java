@@ -1,10 +1,8 @@
 package com.uade.ad.model;
 
-import javax.persistence.*;
-
-import lombok.*;
-
 import java.util.Set;
+import javax.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -21,7 +19,7 @@ public class Step {
 
     private String text;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Recipe recipe;
 
     @OneToMany(mappedBy = "step", cascade = CascadeType.ALL)

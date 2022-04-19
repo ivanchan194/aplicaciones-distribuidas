@@ -27,9 +27,18 @@ public class Recipe {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Type type;
 
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private User user;
+
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Set<Photo> photos;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Step> steps;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private Set<RecipeIngredient> recipeIngredientSet;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private Set<Rating> ratingSet;
 }
