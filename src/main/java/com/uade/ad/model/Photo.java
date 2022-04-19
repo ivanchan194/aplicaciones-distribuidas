@@ -1,8 +1,6 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -13,9 +11,13 @@ import lombok.*;
 @Builder(setterPrefix = "set")
 public class Photo {
     @Id
+    @GeneratedValue
     private int idPhoto;
 
     private String photoUrl;
 
     private String fileExtension;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Recipe recipe;
 }

@@ -1,10 +1,8 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import java.util.List;
+import java.util.Set;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,6 +13,7 @@ import lombok.*;
 @Builder(setterPrefix = "set")
 public class Recipe {
     @Id
+    @GeneratedValue
     private int idRecipe;
 
     private String name;
@@ -25,6 +24,12 @@ public class Recipe {
 
     private int numberPeople;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Type type;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private Set<Photo> photos;
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private List<Step> steps;
 }

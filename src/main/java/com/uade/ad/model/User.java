@@ -1,8 +1,7 @@
 package com.uade.ad.model;
 
-import javax.persistence.*;
-
 import com.uade.ad.utils.YesNoBooleanConverter;
+import javax.persistence.*;
 import lombok.*;
 
 @Entity

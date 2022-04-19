@@ -1,10 +1,6 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 import lombok.*;
 
 @Entity
@@ -15,6 +11,7 @@ import lombok.*;
 @Builder(setterPrefix = "set")
 public class Multimedia {
     @Id
+    @GeneratedValue
     private int idContent;
 
     @Enumerated(EnumType.STRING)
@@ -23,4 +20,7 @@ public class Multimedia {
     private String fileExtension;
 
     private String contentUrl;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Step step;
 }

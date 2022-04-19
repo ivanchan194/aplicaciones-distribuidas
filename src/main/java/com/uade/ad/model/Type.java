@@ -1,12 +1,8 @@
 package com.uade.ad.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
+import java.util.Set;
+import javax.persistence.*;
 import lombok.*;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -16,10 +12,11 @@ import java.util.List;
 @Builder(setterPrefix = "set")
 public class Type {
     @Id
+    @GeneratedValue
     private int idType;
 
     private String description;
 
-    @OneToMany
-    private List<Recipe> recipes;
+    @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
+    private Set<Recipe> recipes;
 }
