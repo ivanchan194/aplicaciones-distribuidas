@@ -18,10 +18,9 @@ import com.uade.ad.service.EmployeeService;
 
 @RestController
 public class EmployeeRestController {
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeService employeeService;
 
-    public void setEmployeeService(EmployeeService employeeService) {
+    public EmployeeRestController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
