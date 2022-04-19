@@ -18,6 +18,6 @@ public class Photo {
 
     private String fileExtension;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Recipe recipe;
 }

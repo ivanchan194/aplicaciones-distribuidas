@@ -24,6 +24,9 @@ public class Recipe {
 
     private int numberPeople;
 
+    @Column(nullable = false)
+    private String photoUrl;
+
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Type type;
 

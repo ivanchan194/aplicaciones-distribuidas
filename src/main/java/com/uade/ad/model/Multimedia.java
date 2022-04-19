@@ -21,6 +21,6 @@ public class Multimedia {
 
     private String contentUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Step step;
 }
