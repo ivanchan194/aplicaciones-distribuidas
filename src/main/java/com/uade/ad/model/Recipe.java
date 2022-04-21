@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 @Getter
@@ -27,10 +28,10 @@ public class Recipe {
     @Column(nullable = false)
     private String photoUrl;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Type type;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private User user;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)

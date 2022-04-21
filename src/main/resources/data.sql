@@ -22,4 +22,13 @@ INSERT INTO Unit VALUES (8, 'tbsp');
 INSERT INTO Unit VALUES (9, 'g');
 INSERT INTO Unit VALUES (10, 'kg');
 
-INSERT INTO Ingredient VALUES (1, 'Pan Rallado')
+INSERT INTO Ingredient VALUES (1, 'Pan Rallado');
+INSERT INTO Ingredient VALUES (2, 'Carne');
+INSERT INTO Ingredient VALUES (3, 'Huevo');
+INSERT INTO Ingredient VALUES (4, 'Sal');
+INSERT INTO Ingredient VALUES (5, 'Pimienta');
+INSERT INTO Ingredient VALUES (6, 'Queso');
+INSERT INTO Ingredient VALUES (7, 'Jamón');
+INSERT INTO Ingredient VALUES (8, 'Tomate');
+
+INSERT INTO Rating VALUES (1, 'Test Comment', 5, 1, 1)

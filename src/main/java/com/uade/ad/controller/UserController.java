@@ -1,6 +1,7 @@
 package com.uade.ad.controller;
 
 import com.uade.ad.exception.InternalServerErrorException;
+import com.uade.ad.model.User;
 import com.uade.ad.model.form.LoginForm;
 import com.uade.ad.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,6 +31,7 @@ public class UserController {
     @PostMapping("/login")
     public void userLogin(@RequestBody LoginForm loginForm){
         // userService.saveUser(user);
+        User user = userService.findUserByIdUser(1);
         System.out.println("Employee Saved Successfully");
         if (loginForm.getUsername().contains("user")) throw new InternalServerErrorException();
     }
