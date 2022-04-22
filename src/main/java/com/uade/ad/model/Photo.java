@@ -1,5 +1,7 @@
 package com.uade.ad.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import lombok.*;
 
@@ -9,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(setterPrefix = "set")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPhoto")
 public class Photo {
     @Id
     @GeneratedValue
@@ -18,6 +21,6 @@ public class Photo {
 
     private String fileExtension;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Recipe recipe;
 }

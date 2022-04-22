@@ -1,5 +1,7 @@
 package com.uade.ad.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import lombok.*;
 
@@ -9,6 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(setterPrefix = "set")
+// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idConversion")
 public class Conversions {
     @Id
     @GeneratedValue
@@ -16,9 +19,9 @@ public class Conversions {
 
     private float conversionFactor;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Unit originUnit;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Unit destinationUnit;
 }
