@@ -3,8 +3,9 @@ package com.uade.ad.model;
 import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 @Getter
@@ -28,21 +29,25 @@ public class Recipe {
     @Column(nullable = false)
     private String photoUrl;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private Type type;
 
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private User user;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Photo> photos;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Step> steps;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<RecipeIngredient> recipeIngredientSet;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Rating> ratingSet;
 }

@@ -1,5 +1,6 @@
 package com.uade.ad.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uade.ad.utils.YesNoBooleanConverter;
 import java.util.Set;
 import javax.persistence.*;
@@ -32,8 +33,10 @@ public class User {
     private UserType userType;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Recipe> recipes;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Rating> ratingSet;
 }

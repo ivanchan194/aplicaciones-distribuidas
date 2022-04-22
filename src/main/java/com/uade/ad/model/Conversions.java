@@ -16,9 +16,9 @@ public class Conversions {
 
     private float conversionFactor;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Unit originUnit;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Unit destinationUnit;
 }

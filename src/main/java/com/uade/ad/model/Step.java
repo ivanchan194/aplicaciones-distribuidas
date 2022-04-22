@@ -2,6 +2,8 @@ package com.uade.ad.model;
 
 import java.util.Set;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 @Entity
@@ -19,9 +21,10 @@ public class Step {
 
     private String text;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private Recipe recipe;
 
     @OneToMany(mappedBy = "step", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Multimedia> multimediaSet;
 }
