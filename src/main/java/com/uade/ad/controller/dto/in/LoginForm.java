@@ -1,4 +1,4 @@
-package com.uade.ad.model.form;
+package com.uade.ad.controller.dto.in;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
