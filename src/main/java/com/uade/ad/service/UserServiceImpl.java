@@ -31,4 +31,11 @@ public class UserServiceImpl implements UserService{
     public Recipe findRecipeByIdRecipe(int i) {
         return recipeRepository.findRecipeByIdRecipe(i);
     }
+
+    @Override
+    public boolean isExistingUser(String username, String password) {
+        User user = userRepository.findUserByNickname(username);
+
+        return (user != null && user.getUserDetails().getPassword().equals(password)) ? true : false;
+    }
 }

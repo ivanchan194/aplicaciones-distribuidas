@@ -1,4 +1,4 @@
-package com.uade.ad.model.form;
+package com.uade.ad.controller.dto.in;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoginForm {
-    @Schema(example = "user")
+    @Schema(example = "testAlumno")
     private String username;
-    @Schema(example = "password")
+    @Schema(example = "Password1")
     private String password;
 }
