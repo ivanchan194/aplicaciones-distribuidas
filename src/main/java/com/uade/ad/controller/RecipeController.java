@@ -31,7 +31,14 @@ public class RecipeController {
     @GetMapping("/recipes")
     public List<Recipe> recipesByName(@RequestParam(value = "filterBy", required = false) String filterBy,
                                       @RequestParam(value = "value", required = false) String value) {
-        return new ArrayList<Recipe>();
+            List<Recipe> foundRecipes = new ArrayList<>();
+        if(filterBy != null) {
+            foundRecipes = recipeService.findRecipesByFilterAndValue(filterBy, value);
+        } else {
+            foundRecipes = recipeService.findAll();
+        }
+
+        return foundRecipes;
     }
 
     @Operation(summary = "Create a recipe")

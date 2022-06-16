@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class LoginForm {
-    @Schema(example = "user")
+    @Schema(example = "testAlumno")
     private String username;
-    @Schema(example = "password")
+    @Schema(example = "Password1")
     private String password;
 }

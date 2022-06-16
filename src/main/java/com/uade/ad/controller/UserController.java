@@ -33,9 +33,8 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @PostMapping("/login")
-    public User userLogin(@RequestBody LoginForm loginForm){
-        User user = userService.findUserByIdUser(1);
-        return user;
+    public boolean userLogin(@RequestBody LoginForm loginForm){
+        return userService.isExistingUser(loginForm.getUsername(), loginForm.getPassword());
     }
 
     @Operation(summary = "Request Password Reset Email")

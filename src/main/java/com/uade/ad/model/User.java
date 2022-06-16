@@ -42,4 +42,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Rating> ratingSet;
+
+    @OneToOne(mappedBy = "user")
+    private UserDetails userDetails;
 }

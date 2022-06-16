@@ -3,6 +3,11 @@ INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE
 INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (3, 'Alumno No Habilitado Avatar URL', 'testAlumnoNoHabilitado@mail.com', 'N', 'TestAlumnoNoHabilitado', 'testAlumnoNoHabilitado', 'ALUMNO');
 INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (4, 'Visitante No Habilitado Avatar URL', 'testVisitanteNoHabilitado@mail.com', 'N', 'TestVisitanteNoHabilitado', 'testVisitanteNoHabilitado', 'VISITANTE');
 
+INSERT INTO User_Details(USER_ID_USER, PASSWORD) VALUES (1, 'Password1');
+INSERT INTO User_Details(USER_ID_USER, PASSWORD) VALUES (2, 'Password2');
+INSERT INTO User_Details(USER_ID_USER, PASSWORD) VALUES (3, 'Password3');
+INSERT INTO User_Details(USER_ID_USER, PASSWORD) VALUES (4, 'Password4');
+
 INSERT INTO Type (ID_TYPE, DESCRIPTION) VALUES (1, 'Pasta');
 INSERT INTO Type (ID_TYPE, DESCRIPTION) VALUES (2, 'Hamburguesa');
 INSERT INTO Type (ID_TYPE, DESCRIPTION) VALUES (3, 'Milanesa');
