@@ -34,3 +34,4 @@ You need to have a created and account on Heroku and have git installed
 | `heroku git:clone -a ad-backend`  | OPTIONAL: Use Git to clone ad-backend's source code to your local machine         |
 | `heroku git:remote -a ad-backend` | OPTIONAL: Add Heroku remote to your local git remotes to enable deployment        |
 | `git push heroku testbranch:main` | OPTIONAL: Push a non-master branch (testbranch) to heroku to remote's main branch |
+| `heroku restart --app ad-backend` | OPTIONAL: Restart the latest build for the application                            |
