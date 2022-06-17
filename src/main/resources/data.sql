@@ -1,4 +1,4 @@
-INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (1, 'Alumno Avatar URL', 'testalumno@mail.com', 'Y', 'TestAlumno', 'testAlumno', 'ALUMNO');
+INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (1, 'Alumno Avatar URL', 'fkkdvuvcrmlzdrqbym@nvhrw.com', 'Y', 'TestAlumno', 'testAlumno', 'ALUMNO');
 INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (2, 'Visitante Avatar URL', 'testvisitante@mail.com', 'Y', 'TestVisitante', 'testVisitante', 'VISITANTE');
 INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (3, 'Alumno No Habilitado Avatar URL', 'testAlumnoNoHabilitado@mail.com', 'N', 'TestAlumnoNoHabilitado', 'testAlumnoNoHabilitado', 'ALUMNO');
 INSERT INTO User (ID_USER, AVATAR_URL, EMAIL, ENABLED, NAME, NICKNAME, USER_TYPE) VALUES (4, 'Visitante No Habilitado Avatar URL', 'testVisitanteNoHabilitado@mail.com', 'N', 'TestVisitanteNoHabilitado', 'testVisitanteNoHabilitado', 'VISITANTE');
