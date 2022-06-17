@@ -1,9 +1,8 @@
 package com.uade.ad.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
-
 import javax.persistence.*;
+import lombok.*;
 
 @Entity
 @Getter
@@ -21,6 +20,10 @@ public class UserDetails {
     @JsonIgnore
     private User user;
 
+    @Column(nullable = true)
     private String password;
+
+    @Column(nullable = true)
+    private Integer resetToken;
 
 }
