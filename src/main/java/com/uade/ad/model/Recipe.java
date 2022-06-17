@@ -50,7 +50,6 @@ public class Recipe {
     private Set<RecipeIngredient> recipeIngredientSet;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<Rating> ratingSet;
 
     public boolean containsIngredient(String ingredient) {

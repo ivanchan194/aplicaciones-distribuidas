@@ -24,8 +24,10 @@ public class UserDetails {
 
     private String country;
 
+    @JsonIgnore
     private String password;
 
+    @JsonIgnore
     private Integer resetToken;
 
 }
