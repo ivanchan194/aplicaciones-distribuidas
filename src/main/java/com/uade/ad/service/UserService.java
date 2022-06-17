@@ -11,4 +11,8 @@ public interface UserService {
     Recipe findRecipeByIdRecipe(int i);
 
     boolean isExistingUser(String username, String password);
+
+    Integer generateToken(String email);
+
+    void resetPassword(String email, Integer resetToken, String newPassword);
 }

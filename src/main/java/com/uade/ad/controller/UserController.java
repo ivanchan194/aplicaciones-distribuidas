@@ -6,6 +6,7 @@ import com.uade.ad.controller.dto.in.PasswordResetForm;
 import com.uade.ad.controller.dto.in.RegisterForm;
 import com.uade.ad.controller.dto.in.RequestPasswordResetForm;
 import com.uade.ad.controller.dto.in.AddAccountDetailsForm;
+import com.uade.ad.service.MailService;
 import com.uade.ad.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -22,8 +23,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
-    public UserController(UserService userService) {
+    private final MailService mailService;
+
+    public UserController(UserService userService, MailService mailService) {
         this.userService = userService;
+        this.mailService = mailService;
     }
 
     @Operation(summary = "User Login")
@@ -45,7 +49,12 @@ public class UserController {
     })
     @PostMapping("/requestPasswordReset")
     public ResponseEntity requestPasswordReset(@RequestBody RequestPasswordResetForm requestPasswordResetForm){
-        return ResponseEntity.ok().build();
+
+        Integer token = userService.generateToken(requestPasswordResetForm.getEmail());
+
+        mailService.sendEmail(requestPasswordResetForm.getEmail(), token);
+
+        return ResponseEntity.ok(token);
     }
 
     @Operation(summary = "Reset password")
@@ -55,7 +64,9 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @PostMapping("/passwordReset")
-    public ResponseEntity resetPassword(@RequestBody PasswordResetForm passwordResetForm){
+    public ResponseEntity resetPassword(@RequestBody PasswordResetForm resetForm){
+        userService.resetPassword(resetForm.getEmail(), resetForm.getResetToken(), resetForm.getNewPassword());
+
         return ResponseEntity.ok().build();
     }
 
