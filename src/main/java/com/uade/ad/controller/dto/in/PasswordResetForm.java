@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PasswordResetForm {
-    @Schema(example = "testalumno@mail.com")
+    @Schema(example = "testAlumno@mail.com")
     private String email;
 
     @Schema(example = "1234")

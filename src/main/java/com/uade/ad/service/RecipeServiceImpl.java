@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class RecipeServiceImpl implements RecipeService{
@@ -18,22 +19,20 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public List<Recipe> findRecipesByFilterAndValue(String filterBy, String value) {
         List<Recipe> foundRecipes = new ArrayList<>();
-        switch(filterBy) {
-            case "nombre":
-                foundRecipes = recipeRepository.findRecipeByName(value);
-                break;
-            case "usuario":
-                foundRecipes = recipeRepository.findRecipeByUserNickname(value);
-                break;
-            case "tipo":
-                foundRecipes = recipeRepository.findRecipeByTypeDescription(value);
-                break;
-            case "ingrediente":
-                break;
-            case "noIngrediente":
-                break;
-            default:
-                break;
+        switch (filterBy.toLowerCase(Locale.ROOT)) {
+            case "nombre" -> foundRecipes = recipeRepository.findRecipeByName(value);
+            case "usuario" -> foundRecipes = recipeRepository.findRecipeByUserNickname(value);
+            case "tipo" -> foundRecipes = recipeRepository.findRecipeByTypeDescription(value);
+            case "ingrediente" -> {
+                foundRecipes = recipeRepository.findAll();
+                foundRecipes.removeIf(recipe -> !recipe.containsIngredient(value));
+            }
+            case "noingrediente" -> {
+                foundRecipes = recipeRepository.findAll();
+                foundRecipes.removeIf(recipe -> recipe.containsIngredient(value));
+            }
+            default -> {
+            }
         }
         return foundRecipes;
     }

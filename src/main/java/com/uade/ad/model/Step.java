@@ -16,7 +16,7 @@ import lombok.*;
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idStep")
 public class Step {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idStep;
 
     private int stepNumber;

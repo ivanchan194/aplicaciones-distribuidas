@@ -14,7 +14,7 @@ import lombok.*;
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idPhoto")
 public class Photo {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idPhoto;
 
     private String photoUrl;

@@ -16,7 +16,7 @@ import lombok.*;
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idType")
 public class Type {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idType;
 
     private String description;

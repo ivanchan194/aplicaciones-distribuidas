@@ -17,7 +17,7 @@ import lombok.*;
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idUser")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
     @Column(unique = true)
@@ -43,6 +43,6 @@ public class User {
     @JsonIgnore
     private Set<Rating> ratingSet;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserDetails userDetails;
 }

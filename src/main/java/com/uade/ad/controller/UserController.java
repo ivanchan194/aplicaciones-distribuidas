@@ -1,5 +1,6 @@
 package com.uade.ad.controller;
 
+import com.uade.ad.exception.UserErrorException;
 import com.uade.ad.model.User;
 import com.uade.ad.controller.dto.in.LoginForm;
 import com.uade.ad.controller.dto.in.PasswordResetForm;
@@ -37,8 +38,11 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @PostMapping("/login")
-    public boolean userLogin(@RequestBody LoginForm loginForm){
-        return userService.isExistingUser(loginForm.getUsername(), loginForm.getPassword());
+    public ResponseEntity userLogin(@RequestBody LoginForm loginForm){
+        if(!userService.isExistingUser(loginForm.getUsername(), loginForm.getPassword())) {
+            throw new UserErrorException();
+        }
+        return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Request Password Reset Email")
@@ -77,8 +81,10 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @PostMapping("/createAccount")
-    public void createAccount(@RequestBody RegisterForm registerForm){
+    public ResponseEntity createAccount(@RequestBody RegisterForm registerForm){
+        userService.createUser(registerForm.getEmail(), registerForm.getUsername());
 
+        return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Add account details")
@@ -88,20 +94,15 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @PostMapping("/addAccountDetails")
-    public User addAccountDetails(@RequestBody AddAccountDetailsForm addAccountDetailsForm){
-        return new User();
-    }
+    public ResponseEntity addAccountDetails(@RequestBody AddAccountDetailsForm form){
 
-/*    @Operation(summary = "User Login")
-    @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "Login successful", content = @Content),
-            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
-            @ApiResponse(responseCode = "500", description = "Error in the login server", content = @Content)
-    })
-    @PostMapping("/logins")
-    public ResponseEntity userLogins(@RequestBody LoginForm loginForm){
-        // userService.saveUser(user);
-        System.out.println("Employee Saved Successfully");
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new User());
-    }*/
+        userService.addUserDetails(form.getEmail(),
+                form.getPassword(),
+                form.getFirstName(),
+                form.getLastName(),
+                form.getAge(),
+                form.getCountry());
+
+        return ResponseEntity.ok().build();
+    }
 }

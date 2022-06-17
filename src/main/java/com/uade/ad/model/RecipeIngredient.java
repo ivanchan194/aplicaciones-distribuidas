@@ -14,7 +14,7 @@ import lombok.*;
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idRecipeIngredient")
 public class RecipeIngredient {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipeIngredient;
 
     private int quantity;

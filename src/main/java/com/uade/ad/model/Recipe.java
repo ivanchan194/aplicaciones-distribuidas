@@ -17,7 +17,7 @@ import lombok.*;
 // @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idRecipe")
 public class Recipe {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRecipe;
 
     private String name;
@@ -52,4 +52,9 @@ public class Recipe {
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Rating> ratingSet;
+
+    public boolean containsIngredient(String ingredient) {
+        return recipeIngredientSet.stream().anyMatch(
+                recipeIngredient -> recipeIngredient.getIngredient().getName().equals(ingredient));
+    }
 }

@@ -15,4 +15,8 @@ public interface UserService {
     Integer generateToken(String email);
 
     void resetPassword(String email, Integer resetToken, String newPassword);
+
+    void createUser(String email, String username);
+
+    void addUserDetails(String email, String password, String firstName, String lastName, Integer age, String country);
 }

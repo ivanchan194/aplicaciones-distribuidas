@@ -12,7 +12,7 @@ import lombok.*;
 @Builder(setterPrefix = "set")
 public class UserDetails {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUserDetail;
 
     @OneToOne
@@ -20,10 +20,12 @@ public class UserDetails {
     @JsonIgnore
     private User user;
 
-    @Column(nullable = true)
+    private Integer age;
+
+    private String country;
+
     private String password;
 
-    @Column(nullable = true)
     private Integer resetToken;
 
 }

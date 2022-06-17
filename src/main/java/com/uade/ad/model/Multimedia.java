@@ -14,7 +14,7 @@ import lombok.*;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class)
 public class Multimedia {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idContent;
 
     @Enumerated(EnumType.STRING)
