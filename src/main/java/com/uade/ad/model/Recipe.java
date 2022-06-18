@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import javax.persistence.*;
 import lombok.*;
@@ -54,6 +55,6 @@ public class Recipe {
 
     public boolean containsIngredient(String ingredient) {
         return recipeIngredientSet.stream().anyMatch(
-                recipeIngredient -> recipeIngredient.getIngredient().getName().equals(ingredient));
+                recipeIngredient -> recipeIngredient.getIngredient().getName().toLowerCase(Locale.ROOT).equals(ingredient));
     }
 }

@@ -11,9 +11,9 @@ import java.util.List;
 public interface RecipeRepository extends JpaRepository<Recipe, Integer> {
     Recipe findRecipeByIdRecipe(int i);
 
-    List<Recipe> findRecipeByUserNickname(String nickanme);
+    List<Recipe> findRecipeByUserNicknameIgnoreCaseContaining(String nickanme);
 
-    List<Recipe> findRecipeByName(String filterBy);
+    List<Recipe> findRecipeByNameIgnoreCaseContaining(String filterBy);
 
-    List<Recipe> findRecipeByTypeDescription(String value);
+    List<Recipe> findRecipeByTypeDescriptionIgnoreCaseContaining(String value);
 }

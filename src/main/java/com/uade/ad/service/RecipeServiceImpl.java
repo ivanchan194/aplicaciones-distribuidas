@@ -20,16 +20,16 @@ public class RecipeServiceImpl implements RecipeService{
     public List<Recipe> findRecipesByFilterAndValue(String filterBy, String value) {
         List<Recipe> foundRecipes = new ArrayList<>();
         switch (filterBy.toLowerCase(Locale.ROOT)) {
-            case "nombre" -> foundRecipes = recipeRepository.findRecipeByName(value);
-            case "usuario" -> foundRecipes = recipeRepository.findRecipeByUserNickname(value);
-            case "tipo" -> foundRecipes = recipeRepository.findRecipeByTypeDescription(value);
+            case "nombre" -> foundRecipes = recipeRepository.findRecipeByNameIgnoreCaseContaining(value);
+            case "usuario" -> foundRecipes = recipeRepository.findRecipeByUserNicknameIgnoreCaseContaining(value);
+            case "tipo" -> foundRecipes = recipeRepository.findRecipeByTypeDescriptionIgnoreCaseContaining(value);
             case "ingrediente" -> {
                 foundRecipes = recipeRepository.findAll();
-                foundRecipes.removeIf(recipe -> !recipe.containsIngredient(value));
+                foundRecipes.removeIf(recipe -> !recipe.containsIngredient(value.toLowerCase(Locale.ROOT)));
             }
             case "noingrediente" -> {
                 foundRecipes = recipeRepository.findAll();
-                foundRecipes.removeIf(recipe -> recipe.containsIngredient(value));
+                foundRecipes.removeIf(recipe -> recipe.containsIngredient(value.toLowerCase(Locale.ROOT)));
             }
             default -> {
             }
