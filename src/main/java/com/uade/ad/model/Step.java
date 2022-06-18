@@ -24,9 +24,9 @@ public class Step {
     private String text;
 
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Recipe recipe;
 
     @OneToMany(mappedBy = "step", cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<Multimedia> multimediaSet;
 }

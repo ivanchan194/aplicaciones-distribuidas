@@ -39,15 +39,12 @@ public class Recipe {
     private User user;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<Photo> photos;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    @JsonIgnore
     private List<Step> steps;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
-    @JsonIgnore
     private Set<RecipeIngredient> recipeIngredientSet;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)

@@ -1,6 +1,7 @@
 package com.uade.ad.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import javax.persistence.*;
 import lombok.*;
@@ -25,6 +26,7 @@ public class RecipeIngredient {
     private Unit unit;
 
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Recipe recipe;
 
     @ManyToOne(optional = false)
