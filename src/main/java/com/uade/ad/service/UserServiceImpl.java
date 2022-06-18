@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService{
     public boolean isExistingUser(String username, String password) {
         User user = userRepository.findUserByNickname(username);
 
-        return user != null && user.getUserDetails().getPassword().equals(password);
+        return user != null && user.getUserDetails().getPassword().equals(password) && user.isEnabled();
     }
 
     @Override
@@ -73,9 +73,11 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void createUser(String email, String username) {
+    public void createUser(String email, String username, String password) {
         try{
             User user = User.builder().setEmail(email).setNickname(username).build();
+            UserDetails userDetails = UserDetails.builder().setPassword(password).setUser(user).build();
+            user.setUserDetails(userDetails);
             userRepository.save(user);
         } catch (Exception e) {
             throw new InternalServerErrorException();
@@ -84,18 +86,14 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void addUserDetails(String email, String password, String firstName, String lastName, Integer age, String country) {
+    public void addUserDetails(String email, String firstName, String lastName, Integer age, String country) {
         try {
             User user = userRepository.findUserByEmail(email);
             if (user != null) {
-                UserDetails userDetails = UserDetails.builder()
-                        .setAge(age)
-                        .setCountry(country)
-                        .setPassword(password)
-                        .setUser(user).build();
-                user.setUserDetails(userDetails);
+                user.getUserDetails().setAge(age);
+                user.getUserDetails().setCountry(country);
                 user.setName(firstName + " " + lastName);
-
+                user.setEnabled(true);
                 userRepository.save(user);
             }
         } catch (Exception e) {

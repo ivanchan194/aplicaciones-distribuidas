@@ -9,6 +9,10 @@ import lombok.Setter;
 public class RegisterForm {
     @Schema(example = "testUsername")
     private String username;
+
+    @Schema(example = "Uade")
+    private String password;
+
     @Schema(example = "testUsername@mail.com")
     private String email;
 }

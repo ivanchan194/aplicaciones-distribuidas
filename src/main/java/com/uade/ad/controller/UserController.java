@@ -82,7 +82,7 @@ public class UserController {
     })
     @PostMapping("/createAccount")
     public ResponseEntity createAccount(@RequestBody RegisterForm registerForm){
-        userService.createUser(registerForm.getEmail(), registerForm.getUsername());
+        userService.createUser(registerForm.getEmail(), registerForm.getUsername(), registerForm.getPassword());
 
         return ResponseEntity.ok().build();
     }
@@ -97,7 +97,6 @@ public class UserController {
     public ResponseEntity addAccountDetails(@RequestBody AddAccountDetailsForm form){
 
         userService.addUserDetails(form.getEmail(),
-                form.getPassword(),
                 form.getFirstName(),
                 form.getLastName(),
                 form.getAge(),

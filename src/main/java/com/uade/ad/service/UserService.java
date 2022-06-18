@@ -16,7 +16,7 @@ public interface UserService {
 
     void resetPassword(String email, Integer resetToken, String newPassword);
 
-    void createUser(String email, String username);
+    void createUser(String email, String username, String password);
 
-    void addUserDetails(String email, String password, String firstName, String lastName, Integer age, String country);
+    void addUserDetails(String email, String firstName, String lastName, Integer age, String country);
 }

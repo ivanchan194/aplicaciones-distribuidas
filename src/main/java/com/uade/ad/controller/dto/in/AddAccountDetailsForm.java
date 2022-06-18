@@ -10,9 +10,6 @@ public class AddAccountDetailsForm {
     @Schema(example = "testUsername@mail.com")
     private String email;
 
-    @Schema(example = "uade1234")
-    private String password;
-
     @Schema(example = "First")
     private String firstName;
 
