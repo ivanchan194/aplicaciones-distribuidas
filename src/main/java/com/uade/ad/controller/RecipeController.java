@@ -1,22 +1,30 @@
 package com.uade.ad.controller;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.uade.ad.controller.dto.in.CreateRecipeForm;
 import com.uade.ad.controller.dto.in.ReviewForm;
 import com.uade.ad.model.Recipe;
-import com.uade.ad.controller.dto.in.CreateRecipeForm;
 import com.uade.ad.service.RecipeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import org.springframework.web.bind.annotation.*;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/v1/recipes")
 public class RecipeController {
     private final RecipeService recipeService;
+
+    private final Cloudinary cloudinary = new Cloudinary();
 
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
@@ -59,6 +67,14 @@ public class RecipeController {
     })
     @PostMapping("/recipe/review/{recipeId}")
     public void addComment(@PathVariable int recipeId, @RequestBody ReviewForm reviewForm){
+    }
+
+    @PostMapping(value="/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity uploadGif(@RequestPart("file") MultipartFile multipartFile,
+                                    @RequestPart("title") String title) throws IOException {
+        String hola = "hola";
+        Map url = cloudinary.uploader().upload(multipartFile.getBytes(), ObjectUtils.asMap("resource_type", "auto"));
+        return ResponseEntity.ok(url.values());
     }
 
 }
