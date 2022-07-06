@@ -1,7 +1,5 @@
 package com.uade.ad.controller.dto.in;
 
-import com.uade.ad.model.Ingredient;
-import com.uade.ad.model.Type;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +15,7 @@ public class CreateRecipeForm {
     private String username;
 
     @Schema(example = "Argentina")
-    private Type type;
+    private String type;
 
     @Schema(example = "7")
     private int peopleServed;

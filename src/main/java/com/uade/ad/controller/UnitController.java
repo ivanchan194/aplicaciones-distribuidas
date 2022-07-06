@@ -29,6 +29,6 @@ public class UnitController {
     })
     @GetMapping("/units")
     public List<Unit> units(){
-        return new ArrayList<Unit>();
+        return unitService.findAll();
     }
 }

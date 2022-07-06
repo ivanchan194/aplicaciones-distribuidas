@@ -29,6 +29,6 @@ public class TypeController {
     })
     @GetMapping("/types")
     public List<Type> recipes(){
-        return new ArrayList<Type>();
+        return typeService.findAll();
     }
 }
