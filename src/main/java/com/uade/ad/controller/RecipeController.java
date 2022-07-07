@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,6 +50,26 @@ public class RecipeController {
         return foundRecipes;
     }
 
+    @Operation(summary = "Get recipes by Ids")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Recipes successfully retrieved", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
+    })
+    @GetMapping("/recipes/byIds")
+    public List<Recipe> recipesByIds(@RequestParam(value = "Id", required = true) List<Integer> ids) {
+        List<Recipe> foundRecipes = new ArrayList<>();
+
+        for(int id : ids) {
+            Recipe recipe = recipeService.findRecipeById(id);
+            if(!(recipe == null)) {
+                foundRecipes.add(recipeService.findRecipeById(id));
+            }
+        }
+
+        return foundRecipes;
+    }
+
     @Operation(summary = "Create a recipe")
     @ApiResponses({
             @ApiResponse(responseCode = "200", description = "Recipes successfully created", content = @Content),
@@ -57,6 +78,7 @@ public class RecipeController {
     })
     @PostMapping("/recipe")
     public void createRecipe(@RequestBody CreateRecipeForm createRecipeForm){
+        recipeService.createRecipe(createRecipeForm);
     }
 
     @Operation(summary = "Add a review to a recipe")

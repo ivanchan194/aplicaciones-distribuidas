@@ -13,7 +13,7 @@ public class IngredientDto {
     @Schema(example = "8")
     private int quantity;
 
-    @Schema(example = "u")
-    private String unit;
+    @Schema(example = "1")
+    private int idUnit;
 
 }

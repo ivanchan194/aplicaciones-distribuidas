@@ -29,6 +29,6 @@ public class RecipeIngredient {
     @JsonIgnore
     private Recipe recipe;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Ingredient ingredient;
 }

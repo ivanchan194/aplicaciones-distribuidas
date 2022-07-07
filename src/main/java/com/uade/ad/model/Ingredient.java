@@ -21,7 +21,7 @@ public class Ingredient {
 
     private String name;
 
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
+/*    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL)
     @JsonIgnore
-    private Set<RecipeIngredient> recipeIngredientSet;
+    private Set<RecipeIngredient> recipeIngredientSet;*/
 }

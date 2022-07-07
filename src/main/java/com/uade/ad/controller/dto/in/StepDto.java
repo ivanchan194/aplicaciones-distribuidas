@@ -16,5 +16,5 @@ public class StepDto {
     @Schema(example = "Cortar la cebolla en juliana")
     private String text;
 
-    private List<MultipartFile> files;
+    private String file;
 }

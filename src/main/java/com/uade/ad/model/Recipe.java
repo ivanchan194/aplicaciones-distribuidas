@@ -29,13 +29,13 @@ public class Recipe {
 
     private int numberPeople;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String photoUrl;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private Type type;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     private User user;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)

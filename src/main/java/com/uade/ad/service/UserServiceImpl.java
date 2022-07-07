@@ -2,10 +2,8 @@ package com.uade.ad.service;
 
 import com.uade.ad.exception.InternalServerErrorException;
 import com.uade.ad.exception.UserErrorException;
-import com.uade.ad.model.Recipe;
 import com.uade.ad.model.User;
 import com.uade.ad.model.UserDetails;
-import com.uade.ad.repository.RecipeRepository;
 import com.uade.ad.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +13,8 @@ import java.util.Random;
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
 
-    private final RecipeRepository recipeRepository;
-
-    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository) {
+    public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.recipeRepository = recipeRepository;
     }
 
     @Override
@@ -30,11 +25,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findUserByIdUser(int id) {
         return userRepository.findUserByIdUser(1);
-    }
-
-    @Override
-    public Recipe findRecipeByIdRecipe(int i) {
-        return recipeRepository.findRecipeByIdRecipe(i);
     }
 
     @Override

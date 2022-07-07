@@ -11,11 +11,16 @@ public class CreateRecipeForm {
     @Schema(example = "Empanada")
     private String name;
 
-    @Schema(example = "testUsername")
-    private String username;
+    private List<String> photoUrl;
+
+    @Schema(example = "testAlumno@mail.com")
+    private String email;
+
+    @Schema(example = "Rica empanada de carne")
+    private String description;
 
     @Schema(example = "Argentina")
-    private String type;
+    private int idType;
 
     @Schema(example = "7")
     private int peopleServed;

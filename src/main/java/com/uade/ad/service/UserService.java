@@ -8,8 +8,6 @@ public interface UserService {
 
     User findUserByIdUser(int i);
 
-    Recipe findRecipeByIdRecipe(int i);
-
     boolean isExistingUser(String username, String password);
 
     Integer generateToken(String email);
