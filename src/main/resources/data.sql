@@ -15,9 +15,9 @@ INSERT INTO Type (ID_TYPE, DESCRIPTION) VALUES (4, 'Pescado');
 INSERT INTO Type (ID_TYPE, DESCRIPTION) VALUES (5, 'Sushi');
 INSERT INTO Type (ID_TYPE, DESCRIPTION) VALUES (6, 'Argentina');
 
-INSERT INTO Recipe (ID_RECIPE, DESCRIPTION, NAME, NUMBER_PEOPLE, PHOTO_URL, PORTIONS, TYPE_ID_TYPE, USER_ID_USER) VALUES (1, 'Rico pedazo de carne empanizado con jamón queso y tomate', 'Milanesa Napolitana', 1, 'Milanesa Napolitana Photo URL', 4, 3, 1);
-INSERT INTO Recipe (ID_RECIPE, DESCRIPTION, NAME, NUMBER_PEOPLE, PHOTO_URL, PORTIONS, TYPE_ID_TYPE, USER_ID_USER) VALUES (2, 'Coste barato, Hervido', 'Locro', 1, 'Locro Photo URL', 4, 6, 2);
-INSERT INTO Recipe (ID_RECIPE, DESCRIPTION, NAME, NUMBER_PEOPLE, PHOTO_URL, PORTIONS, TYPE_ID_TYPE, USER_ID_USER) VALUES (3, 'Tiras de harina con salsa color verde', 'Pasta al Pesto', 1, 'Pasta al Pesto Photo URL', 4, 1, 1);
+INSERT INTO Recipe (ID_RECIPE, DESCRIPTION, NAME, NUMBER_PEOPLE, PHOTO_URL, PORTIONS, TYPE_ID_TYPE, USER_ID_USER) VALUES (1, 'Rico pedazo de carne empanizado con jamón queso y tomate', 'Milanesa Napolitana', 1, 'https://airescriollos.com.ar/wp-content/uploads/2020/11/Milanesa-de-Pollo-Napolitana.jpg', 4, 3, 1);
+INSERT INTO Recipe (ID_RECIPE, DESCRIPTION, NAME, NUMBER_PEOPLE, PHOTO_URL, PORTIONS, TYPE_ID_TYPE, USER_ID_USER) VALUES (2, 'Coste barato, Hervido', 'Locro', 1, 'https://static.buscador-de-recetas.com/image/photo/2014/11/11/246531_200.jpg', 4, 6, 2);
+INSERT INTO Recipe (ID_RECIPE, DESCRIPTION, NAME, NUMBER_PEOPLE, PHOTO_URL, PORTIONS, TYPE_ID_TYPE, USER_ID_USER) VALUES (3, 'Tiras de harina con salsa color verde', 'Pasta al Pesto', 1, 'https://grecipes.s3.amazonaws.com/recipe_picture/1561525/full_uploads_20160531T1927Z_badca3e71a8f424a87619975df753b4b_zsm.jpg', 4, 1, 1);
 
 INSERT INTO Unit (ID_UNIT, DESCRIPTION) VALUES (1, 'cm');
 INSERT INTO Unit (ID_UNIT, DESCRIPTION) VALUES (2, 'm');
