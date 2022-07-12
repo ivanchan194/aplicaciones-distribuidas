@@ -13,4 +13,6 @@ public interface RecipeService {
     Recipe findRecipeById(int id);
 
     void createRecipe(CreateRecipeForm createRecipeForm);
+
+    Recipe findRecipeByIdUserAndRecipeName(int idUser, String recipeName);
 }

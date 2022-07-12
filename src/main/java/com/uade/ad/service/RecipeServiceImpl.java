@@ -3,6 +3,8 @@ package com.uade.ad.service;
 import com.uade.ad.controller.dto.in.CreateRecipeForm;
 import com.uade.ad.controller.dto.in.IngredientDto;
 import com.uade.ad.controller.dto.in.StepDto;
+import com.uade.ad.exception.InternalServerErrorException;
+import com.uade.ad.exception.UserErrorException;
 import com.uade.ad.model.*;
 import com.uade.ad.repository.RecipeRepository;
 import com.uade.ad.repository.TypeRepository;
@@ -77,6 +79,32 @@ public class RecipeServiceImpl implements RecipeService{
         newRecipe.setSteps(createSteps(form.getSteps(), newRecipe));
         newRecipe.setRecipeIngredientSet(createRecipeIngredients(form.getIngredients(), newRecipe));
         recipeRepository.save(newRecipe);
+    }
+
+    @Override
+    public Recipe findRecipeByIdUserAndRecipeName(int idUser, String recipeName) {
+        try {
+            User user = userRepository.findUserByIdUser(idUser);
+            if(user != null) {
+                List<Recipe> recipes =
+                        user.getRecipes().stream()
+                                .filter(recipe -> recipe.getName().toLowerCase(Locale.ROOT).equals(recipeName))
+                                .toList();
+                if (recipes.size() == 1) {
+                    return recipes.get(0);
+                } else if (recipes.size() == 0){
+                    throw new UserErrorException();
+                } else {
+                    throw new InternalServerErrorException();
+                }
+            } else {
+                throw new UserErrorException();
+            }
+        } catch (UserErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new InternalServerErrorException();
+        }
     }
 
     private Set<Photo> createPhotos(List<String> photoUrls, Recipe recipe) {

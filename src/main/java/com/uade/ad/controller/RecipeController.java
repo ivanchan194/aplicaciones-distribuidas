@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.http.MediaType;
@@ -68,6 +69,18 @@ public class RecipeController {
         }
 
         return foundRecipes;
+    }
+
+    @Operation(summary = "Get recipes by user and recipe name")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Recipe successfully retrieved", content = @Content),
+            @ApiResponse(responseCode = "404", description = "Not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
+    })
+    @GetMapping("/recipes/user={idUser}/name={recipeName}")
+    public Recipe recipeByUserAndName(@PathVariable int idUser, @PathVariable String recipeName) {
+
+        return recipeService.findRecipeByIdUserAndRecipeName(idUser, recipeName.toLowerCase(Locale.ROOT));
     }
 
     @Operation(summary = "Create a recipe")
