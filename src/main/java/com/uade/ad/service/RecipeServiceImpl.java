@@ -2,14 +2,12 @@ package com.uade.ad.service;
 
 import com.uade.ad.controller.dto.in.CreateRecipeForm;
 import com.uade.ad.controller.dto.in.IngredientDto;
+import com.uade.ad.controller.dto.in.ReviewForm;
 import com.uade.ad.controller.dto.in.StepDto;
 import com.uade.ad.exception.InternalServerErrorException;
 import com.uade.ad.exception.UserErrorException;
 import com.uade.ad.model.*;
-import com.uade.ad.repository.RecipeRepository;
-import com.uade.ad.repository.TypeRepository;
-import com.uade.ad.repository.UnitRepository;
-import com.uade.ad.repository.UserRepository;
+import com.uade.ad.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -25,14 +23,18 @@ public class RecipeServiceImpl implements RecipeService{
 
     private final UserRepository userRepository;
 
+    private final RatingRepository ratingRepository;
+
     public RecipeServiceImpl(RecipeRepository recipeRepository,
                              TypeRepository typeRepository,
                              UnitRepository unitRepository,
-                             UserRepository userRepository) {
+                             UserRepository userRepository,
+                             RatingRepository ratingRepository) {
         this.recipeRepository = recipeRepository;
         this.typeRepository = typeRepository;
         this.unitRepository = unitRepository;
         this.userRepository = userRepository;
+        this.ratingRepository = ratingRepository;
     }
     @Override
     public List<Recipe> findRecipesByFilterAndValue(String filterBy, String value) {
@@ -97,6 +99,28 @@ public class RecipeServiceImpl implements RecipeService{
                 } else {
                     throw new InternalServerErrorException();
                 }
+            } else {
+                throw new UserErrorException();
+            }
+        } catch (UserErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
+    public void addRecipeReview(int idUser, int recipeId, ReviewForm reviewForm) {
+        try {
+            Recipe recipe = recipeRepository.findRecipeByIdRecipe(recipeId);
+            User user = userRepository.findUserByIdUser(idUser);
+            if (recipe != null && user != null) {
+                Rating rating = new Rating();
+                rating.setRating(reviewForm.getStars());
+                rating.setComments(reviewForm.getComment());
+                rating.setUser(user);
+                rating.setRecipe(recipe);
+                ratingRepository.save(rating);
             } else {
                 throw new UserErrorException();
             }

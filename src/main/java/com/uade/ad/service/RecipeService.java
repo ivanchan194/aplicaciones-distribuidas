@@ -1,6 +1,7 @@
 package com.uade.ad.service;
 
 import com.uade.ad.controller.dto.in.CreateRecipeForm;
+import com.uade.ad.controller.dto.in.ReviewForm;
 import com.uade.ad.model.Recipe;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface RecipeService {
     void createRecipe(CreateRecipeForm createRecipeForm);
 
     Recipe findRecipeByIdUserAndRecipeName(int idUser, String recipeName);
+
+    void addRecipeReview(int idUser, int recipeId, ReviewForm reviewForm);
 }

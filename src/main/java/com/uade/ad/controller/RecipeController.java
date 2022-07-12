@@ -100,8 +100,9 @@ public class RecipeController {
             @ApiResponse(responseCode = "404", description = "Error in recipe", content = @Content),
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
-    @PostMapping("/recipe/review/{recipeId}")
-    public void addComment(@PathVariable int recipeId, @RequestBody ReviewForm reviewForm){
+    @PostMapping("/recipe/review/user={idUser}/recipe={idRecipe}")
+    public void addComment(@PathVariable int idUser, @PathVariable int idRecipe, @RequestBody ReviewForm reviewForm){
+        recipeService.addRecipeReview(idUser, idRecipe, reviewForm);
     }
 
     @PostMapping(value="/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
