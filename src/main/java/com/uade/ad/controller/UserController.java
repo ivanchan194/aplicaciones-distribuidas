@@ -97,10 +97,10 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "Create account")
+    @Operation(summary = "Add favorite recipe")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "New account successfully registered", content = @Content),
-            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+            @ApiResponse(responseCode = "200", description = "New favorite recipe successfully registered", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User or recipe not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @PostMapping("/favoriteRecipe")
@@ -109,9 +109,9 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @Operation(summary = "Create account")
+    @Operation(summary = "Get favorite recipes")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "New account successfully registered", content = @Content),
+            @ApiResponse(responseCode = "200", description = "Favorite recipes successfully retrieved", content = @Content),
             @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
@@ -121,10 +121,10 @@ public class UserController {
         return ResponseEntity.ok(userService.getFavoriteRecipes(userId));
     }
 
-    @Operation(summary = "Create account")
+    @Operation(summary = "Delete favorite recipes")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "New account successfully registered", content = @Content),
-            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+            @ApiResponse(responseCode = "200", description = "Favorite recipes successfully deleted", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User or recipe not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
     })
     @DeleteMapping("/favoriteRecipe")
