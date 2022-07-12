@@ -2,19 +2,23 @@ package com.uade.ad.service;
 
 import com.uade.ad.exception.InternalServerErrorException;
 import com.uade.ad.exception.UserErrorException;
+import com.uade.ad.model.Recipe;
 import com.uade.ad.model.User;
 import com.uade.ad.model.UserDetails;
+import com.uade.ad.repository.RecipeRepository;
 import com.uade.ad.repository.UserRepository;
-import org.springframework.stereotype.Service;
-
 import java.util.Random;
+import java.util.Set;
+import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService{
     private final UserRepository userRepository;
+    private final RecipeRepository recipeRepository;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, RecipeRepository recipeRepository) {
         this.userRepository = userRepository;
+        this.recipeRepository = recipeRepository;
     }
 
     @Override
@@ -87,7 +91,67 @@ public class UserServiceImpl implements UserService{
                 userRepository.save(user);
             }
         } catch (Exception e) {
-            throw  new InternalServerErrorException();
+            throw new InternalServerErrorException();
         }
+    }
+
+    @Override
+    public void addFavoriteRecipe(int idUser, int idRecipe) {
+        try {
+            Recipe recipe = recipeRepository.findRecipeByIdRecipe(idRecipe);
+            User user = userRepository.findUserByIdUser(idUser);
+
+            if (recipe != null && user != null) {
+                user.addFavoriteRecipe(recipe);
+                userRepository.save(user);
+            } else {
+                throw new UserErrorException();
+            }
+        } catch (UserErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
+    public Set<Recipe> getFavoriteRecipes(int idUser) {
+        try {
+            User user = userRepository.findUserByIdUser(idUser);
+            if (user != null) {
+                return user.getFavoriteRecipes();
+            } else {
+                throw new UserErrorException();
+            }
+        } catch (UserErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
+    public void deleteFavoriteRecipe(int idUser, int idRecipe) {
+        try {
+            User user = userRepository.findUserByIdUser(idUser);
+            Recipe recipe = recipeRepository.findRecipeByIdRecipe(idRecipe);
+            if (user != null && recipe != null) {
+                if (user.getFavoriteRecipes().contains(recipe)) {
+                    user.deleteFavoriteRecipe(recipe);
+                    userRepository.save(user);
+                } else {
+                    throw new UserErrorException();
+                }
+            }
+        } catch (UserErrorException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new InternalServerErrorException();
+        }
+    }
+
+    @Override
+    public User getUser(int i) {
+        return userRepository.findUserByIdUser(i);
     }
 }

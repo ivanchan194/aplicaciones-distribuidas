@@ -1,12 +1,7 @@
 package com.uade.ad.controller;
 
+import com.uade.ad.controller.dto.in.*;
 import com.uade.ad.exception.UserErrorException;
-import com.uade.ad.model.User;
-import com.uade.ad.controller.dto.in.LoginForm;
-import com.uade.ad.controller.dto.in.PasswordResetForm;
-import com.uade.ad.controller.dto.in.RegisterForm;
-import com.uade.ad.controller.dto.in.RequestPasswordResetForm;
-import com.uade.ad.controller.dto.in.AddAccountDetailsForm;
 import com.uade.ad.service.MailService;
 import com.uade.ad.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -14,10 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/users")
@@ -102,6 +94,42 @@ public class UserController {
                 form.getAge(),
                 form.getCountry());
 
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "Create account")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "New account successfully registered", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
+    })
+    @PostMapping("/favoriteRecipe")
+    public ResponseEntity addFavoriteRecipe(@RequestBody FavoriteRecipeForm favoriteRecipeForm){
+        userService.addFavoriteRecipe(favoriteRecipeForm.getIdUser(), favoriteRecipeForm.getIdRecipe());
+        return ResponseEntity.ok().build();
+    }
+
+    @Operation(summary = "Create account")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "New account successfully registered", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
+    })
+    @GetMapping("/favoriteRecipe/{userId}")
+    public ResponseEntity getFavoriteRecipe(@PathVariable int userId){
+
+        return ResponseEntity.ok(userService.getFavoriteRecipes(userId));
+    }
+
+    @Operation(summary = "Create account")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "New account successfully registered", content = @Content),
+            @ApiResponse(responseCode = "404", description = "User not found", content = @Content),
+            @ApiResponse(responseCode = "500", description = "Error in the server", content = @Content)
+    })
+    @DeleteMapping("/favoriteRecipe")
+    public ResponseEntity deleteFavoriteRecipe(@RequestBody FavoriteRecipeForm favoriteRecipeForm){
+        userService.deleteFavoriteRecipe(favoriteRecipeForm.getIdUser(), favoriteRecipeForm.getIdRecipe());
         return ResponseEntity.ok().build();
     }
 }
