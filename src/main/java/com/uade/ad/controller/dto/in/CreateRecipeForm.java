@@ -8,6 +8,9 @@ import java.util.List;
 @Getter
 @Setter
 public class CreateRecipeForm {
+    @Schema(example = "null")
+    private int idRecipe;
+
     @Schema(example = "Empanada")
     private String name;
 

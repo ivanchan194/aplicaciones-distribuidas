@@ -70,6 +70,9 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public void createRecipe(CreateRecipeForm form) {
         Recipe newRecipe = new Recipe();
+        if(form.getIdRecipe() > 0) {
+            newRecipe = recipeRepository.findRecipeByIdRecipe(form.getIdRecipe());
+        }
         newRecipe.setName(form.getName());
         newRecipe.setDescription(form.getDescription());
         newRecipe.setPortions(form.getPortions());
