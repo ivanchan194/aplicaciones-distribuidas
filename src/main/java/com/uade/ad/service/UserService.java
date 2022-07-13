@@ -11,6 +11,8 @@ public interface UserService {
 
     boolean isExistingUser(String username, String password);
 
+    User findUserByUsername(String username);
+
     Integer generateToken(String email);
 
     void resetPassword(String email, Integer resetToken, String newPassword);

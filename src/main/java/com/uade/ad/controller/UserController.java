@@ -2,6 +2,7 @@ package com.uade.ad.controller;
 
 import com.uade.ad.controller.dto.in.*;
 import com.uade.ad.exception.UserErrorException;
+import com.uade.ad.model.User;
 import com.uade.ad.service.MailService;
 import com.uade.ad.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -34,7 +35,7 @@ public class UserController {
         if(!userService.isExistingUser(loginForm.getUsername(), loginForm.getPassword())) {
             throw new UserErrorException();
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(userService.findUserByUsername(loginForm.getUsername()));
     }
 
     @Operation(summary = "Request Password Reset Email")
