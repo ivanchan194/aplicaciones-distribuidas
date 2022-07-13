@@ -27,6 +27,6 @@ public class Step {
     @JsonIgnore
     private Recipe recipe;
 
-    @OneToMany(mappedBy = "step", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "step", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Multimedia> multimediaSet;
 }

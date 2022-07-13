@@ -9,6 +9,7 @@ import com.uade.ad.exception.UserErrorException;
 import com.uade.ad.model.*;
 import com.uade.ad.repository.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
@@ -25,16 +26,32 @@ public class RecipeServiceImpl implements RecipeService{
 
     private final RatingRepository ratingRepository;
 
+    private final PhotoRepository photoRepository;
+
+    private final RecipeIngredientRepository recipeIngredientRepository;
+
+    private final StepRepository stepRepository;
+
+    private final MultimediaRepository multimediaRepository;
+
     public RecipeServiceImpl(RecipeRepository recipeRepository,
                              TypeRepository typeRepository,
                              UnitRepository unitRepository,
                              UserRepository userRepository,
-                             RatingRepository ratingRepository) {
+                             RatingRepository ratingRepository,
+                             PhotoRepository photoRepository,
+                             RecipeIngredientRepository recipeIngredientRepository,
+                             StepRepository stepRepository,
+                             MultimediaRepository multimediaRepository) {
         this.recipeRepository = recipeRepository;
         this.typeRepository = typeRepository;
         this.unitRepository = unitRepository;
         this.userRepository = userRepository;
         this.ratingRepository = ratingRepository;
+        this.photoRepository = photoRepository;
+        this.recipeIngredientRepository = recipeIngredientRepository;
+        this.stepRepository = stepRepository;
+        this.multimediaRepository = multimediaRepository;
     }
     @Override
     public List<Recipe> findRecipesByFilterAndValue(String filterBy, String value) {
@@ -68,10 +85,28 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    @Transactional
     public void createRecipe(CreateRecipeForm form) {
         Recipe newRecipe = new Recipe();
         if(form.getIdRecipe() > 0) {
             newRecipe = recipeRepository.findRecipeByIdRecipe(form.getIdRecipe());
+            List<Integer> photoIds = new ArrayList<>();
+            List<Integer> recipeIngredientIds = new ArrayList<>();
+            List<Integer> stepIds = new ArrayList<>();
+            List<Integer> multimediaIds = new ArrayList<>();
+            List<Multimedia> multimedias = new ArrayList<>();
+            newRecipe.getPhotos().stream().forEach(photo -> photoIds.add(photo.getIdPhoto()));
+            newRecipe.getRecipeIngredientSet().stream().forEach(
+                    recipeIngredient -> recipeIngredientIds.add(recipeIngredient.getIdRecipeIngredient()));
+            newRecipe.getSteps().forEach(step -> {
+                stepIds.add(step.getIdStep());
+                multimedias.addAll(step.getMultimediaSet().stream().toList());
+            });
+            multimedias.forEach(multimedia -> multimediaIds.add(multimedia.getIdContent()));
+            photoRepository.deletePhotoByIdPhotoIn(photoIds);
+            recipeIngredientRepository.deleteRecipeIngredientByIdRecipeIngredientIn(recipeIngredientIds);
+            multimediaRepository.deleteMultimediaByIdMultimediaIn(multimediaIds);
+            stepRepository.deleteStepByIdStepIn(stepIds);
         }
         newRecipe.setName(form.getName());
         newRecipe.setDescription(form.getDescription());
